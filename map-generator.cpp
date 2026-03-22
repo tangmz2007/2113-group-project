@@ -30,7 +30,7 @@ int main() {
 
     // generate 10 random layer sizes (2~5)
     for(int i=1;i<=MAX_LAYERS;i++){
-        layersizes[i] = randmod(4) + 2;
+        layersizes[i] = randmod(MAX_PER_LAYER-1) + 2;
     }
 
     // initialize nodes and defaults
