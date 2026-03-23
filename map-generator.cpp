@@ -55,7 +55,7 @@ int main() {
     // assign random node types for layers
     for(int layer=1; layer<=MAX_LAYERS; layer++){
         for(int idx=0; idx<layersizes[layer]; idx++){
-            gameMap[layer][idx].type = randmod(4) + 1; // 1 monster,2 shop,3 campfire,4 chest
+            gameMap[layer][idx].type = randmod(5); // 0 ???, 1 monster,2 shop,3 campfire,4 chest
         }
     }
 
@@ -129,6 +129,7 @@ int main() {
             else if(n.type==2) cout << "(Shop)";
             else if(n.type==3) cout << "(Campfire)";
             else if(n.type==4) cout << "(Chest)";
+            else if(n.type==0) cout << "(???)"
             cout << " prev{";
             for(int p=0;p<n.prev_count;p++){
                 if(p) cout << ",";
