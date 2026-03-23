@@ -36,7 +36,7 @@ void initialize(Node gameMap[][MAX_PER_LAYER], int layersizes[])
     // assign random node types for layers
     for (int layer = 1; layer <= MAX_LAYERS; layer++) {
         for (int idx = 0; idx < layersizes[layer]; idx++) {
-            gameMap[layer][idx].type = randmod(4) + 1; // 1 monster,2 shop,3 campfire,4 chest
+            gameMap[layer][idx].type = randmod(5); // 0 ???, 1 monster,2 shop,3 campfire,4 chest
         }
     }
 
@@ -80,7 +80,7 @@ void initialize(Node gameMap[][MAX_PER_LAYER], int layersizes[])
             }
         }
 
-        // ensure each next node has at least one prev (可能在少数情况下漏掉)
+        // ensure each next node has at least one prev (驴脡脛脺脭脷脡脵脢媒脟茅驴枚脧脗脗漏碌么)
         for (int j = 0; j < m; j++) {
             if (gameMap[layer + 1][j].prev_count == 0) {
                 int best = (j * n) / m;
