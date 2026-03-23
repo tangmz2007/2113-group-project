@@ -11,7 +11,7 @@ const int MAX_PER_LAYER = 4;
 const int MAX_LAYERS = 10;
 
 typedef struct {
-    int type;  // 1 monster,2 shop,3 campfire,4 chest
+    int type;  // 0 ???, 1 monster,2 shop,3 campfire,4 chest
     int layer, index;
     int prev[MAX_PER_LAYER + 1];
     int next[MAX_PER_LAYER + 1];
