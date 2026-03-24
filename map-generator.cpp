@@ -3,6 +3,7 @@ using namespace std;
 #include <vector>
 #include <cstdlib>
 #include <ctime>
+#include <cmath>
 const int MAX_PER_LAYER = 4;
 const int MAX_LAYERS = 10;
 
