@@ -5,9 +5,14 @@ using namespace std;
 #include <ctime>
 #include <cmath>    // 用于round函数
 #include <iomanip>  // 用于格式化输出
-using namespace std;
+#include <conio.h>  // _kbhit/_getch
+#include <windows.h> // Sleep
 #include "gamemap.h"
 #include "map-visual.h"
+#include "showData.h"
+#include "potions.h"
+#include "player.h"
+#include "Skill.h"
 
 int main() {
 
@@ -55,5 +60,24 @@ int main() {
 
     printMapVisual(gameMap, layersizes);
 
+    Player player;
+   
+    /*player.learnSkill(create_skill_tree());
+    player.learnSkill(create_skill_tree());
+    player.learnSkill(create_skill_tree());*/
+
+    // 主循环：程序不会自动结束，按键 'B' 或 'b' 时显示玩家状态
+    while (true) {
+        // 非阻塞检测键盘
+        if (_kbhit()) {
+            int ch = _getch();
+            // 有些环境 _getch 返回 0 或 224 作为前缀，字母按键直接返回字符
+            if (ch == 'b' || ch == 'B') {
+                player.displayStatus();
+            }
+            // 忽略其他按键；按 Ctrl+C 可终止程序
+        }
+        Sleep(50); // 减少 CPU 占用
+    }
     return 0;
 }
