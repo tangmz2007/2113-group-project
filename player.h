@@ -1,51 +1,57 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "character.h"
+#include "skill.h"
 #include <vector>
-#include <memory>
+#include "showData.h"
 #include <string>
 using namespace std;
 
 class Player : public Character {
-private:
+public:
+    int HP;
     int maxEnergy;
     int currentEnergy;
     int level;
     int experience;
     int gold;
+    vector<skill_node> skills;
+	vector<string> inventory; // 存储物品名称的背包
     
 
 public:
-    Player(string name);
-    
+    Player();
+
     //energy system;
-    void resetEnergy()
-    {
-        currentEnergy = maxEnergy;
-    }
-    int useEnergy(int cost);
-    int getEnergy() const
-    {
-        return currentEnergy;
-    }
-    void gainMainEnergy(int amount);
+    void resetEnergy();
+    int getEnergy();
+    void gainMaxEnergy(int amount);
     void gainEnergy(int amount);
 
     //leveling system
     void gainExperience(int amount);
-    void levelUp();
+	void levelUp();
 
     //experience tree
-    void learnSkill(shared_ptr<Skill> skill);
-    vector<shared_ptr<Skill>> getSkills() const
-    {
-        return skills;
-    }
+    void learnSkill(skill_node skill[]);
+
 
     //gold system
-    void earnGold(int amount);
-    void spendGold(int amount);
+    void earnGold(int amount)
+    {
+		gold += amount;
+    }
+    void spendGold(int amount)
+    {
+        if (gold >= amount)
+        {
+			gold -= amount;
+        }
+        else
+        {
+            showdata::showCenteredBox("No enough money !!!");
+        }
+    }
 
     //display
     void displayStatus() const;
