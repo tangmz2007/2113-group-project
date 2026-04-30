@@ -110,3 +110,12 @@ string branchName(SkillBranch b) {
     }
     return "?";
 }
+
+double getDifficultyMultiplier(Difficulty d) {
+    switch (d) {
+        case Difficulty::Easy: return 0.75;
+        case Difficulty::Normal: return 1.0;
+        case Difficulty::Hard: return 1.35;
+    }
+    return 1.0;
+}
