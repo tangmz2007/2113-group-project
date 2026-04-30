@@ -1,5 +1,40 @@
 2113-group-project
-
+main_final (Final Executable)
+ |-- main_final.o
+ |    |-- main_final.cpp
+ |    |-- Dependencies: battle.h, map.h, player.h, savesystem.h, items.h, types.h
+ |
+ |-- battle.o (Battle System)
+ |    |-- battle.cpp
+ |    |-- Dependencies: battle.h, items.h, skills.h, types.h, monster.h
+ |
+ |-- map.o (Map System)
+ |    |-- map.cpp
+ |    |-- Dependencies: map.h, types.h
+ |
+ |-- monster.o (Monster System)
+ |    |-- monster.cpp
+ |    |-- Dependencies: monster.h, types.h
+ |
+ |-- skills.o (Skill System)
+ |    |-- skills.cpp
+ |    |-- Dependencies: skills.h, types.h, player.h
+ |
+ |-- savesystem.o (Save System)
+ |    |-- savesystem.cpp
+ |    |-- Dependencies: savesystem.h, map.h, player.h
+ |
+ |-- player.o (Player System)
+ |    |-- player.cpp
+ |    |-- Dependencies: player.h, skills.h, items.h
+ |
+ |-- items.o (Item System)
+ |    |-- items.cpp
+ |    |-- Dependencies: items.h, types.h
+ |
+ |-- types.o (Basic Type Definitions)
+      |-- types.cpp
+      |-- Dependencies: types.h
 Introduction
 
 This game is written in C++ with map generation, combat, player progression, and save/load support. The project is organized as a modular console application in which the player advances through a branching map, enters battles and special rooms, collects resources, and attempts to defeat a final boss.
