@@ -1,4 +1,7 @@
 2113-group-project
+### Project Dependency Structure
+
+```text
 main_final (Final Executable)
  |-- main_final.o
  |    |-- main_final.cpp
