@@ -1,6 +1,7 @@
 2113-group-project
 
 Introduction
+
 This game is written in C++ with map generation, combat, player progression, and save/load support. The project is organized as a modular console application in which the player advances through a branching map, enters battles and special rooms, collects resources, and attempts to defeat a final boss.
 
 Overview
