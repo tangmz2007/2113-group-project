@@ -28,6 +28,28 @@ void local_seed_generator(unsigned int& seed) {
     srand(seed);
 }
 
+void chooseDifficulty(Player& p) {
+    //allows user to choose the difficulty level for the run.
+    cout << "\nChoose difficulty:\n";
+    cout << "1 Easy (Monsters have 75% stats)\n";
+    cout << "2 Normal (Monsters have 100% stats)\n";
+    cout << "3 Hard (Monsters have 135% stats)\n";
+    int choice = readIntInRange(1, 3);
+    switch (choice) {
+        case 1:
+            p.difficulty = Difficulty::Easy;
+            cout << "Difficulty set to EASY.\n";
+            break;
+        case 2:
+            p.difficulty = Difficulty::Normal;
+            cout << "Difficulty set to NORMAL.\n";
+            break;
+        case 3:
+            p.difficulty = Difficulty::Hard;
+            cout << "Difficulty set to HARD.\n";
+            break;
+    }
+}
 void doShop(Player& p);
 void doCampfire(Player& p);
 void doChest(Player& p);
@@ -256,6 +278,7 @@ int main() {
             unsigned int seed;
             local_seed_generator(seed);
             p = makeNewPlayer();
+            chooseDifficulty(p);
             map = GameMap(seed);
             saveMapSnapshot(MAP_SNAPSHOT_FILE, map);
             rs.valid = true;
@@ -274,6 +297,7 @@ int main() {
                 cout << "No same-map snapshot found.\n";
                 continue;
             }
+            chooseDifficulty(p);
         }
 
         while (true) {
