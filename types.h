@@ -21,6 +21,7 @@ enum class ActionType {
     Heal, DigDeep, ExplosiveCharge, MultiHit, WeakCurse, Drain, Roar
 };
 enum class MonsterKind { Dummy, Slime, Golem, Witch, BanditCaptain, IronBeast, AbyssBoss };
+enum class Difficulty { Easy, Normal, Hard };
 
 struct Node { //should see map.cpp for details
     int layer = 0;
@@ -41,5 +42,6 @@ bool askYesNo(const string& prompt);
 string nodeName(NodeType t);
 string shortNodeName(NodeType t);
 string branchName(SkillBranch b);
+double getDifficultyMultiplier(Difficulty d);
 
 #endif
