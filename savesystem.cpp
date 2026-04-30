@@ -14,7 +14,8 @@ bool saveRun(const string& filename, const RunState& rs, const Player& p, const 
     out << rs.valid << ' ' << rs.gameOver << ' ' << rs.curLayer << ' ' << rs.curIndex << "\n";
     out << p.hp << ' ' << p.maxHp << ' ' << p.exp << ' ' << p.level << ' ' << p.skillPoints << ' ' << p.gold << ' '
         << p.maxEnergy << ' ' << p.skillSlots << ' ' << p.potionSlots << ' ' << p.phoenixUsed << ' '
-        << p.backpackCount << ' ' << p.grandmaSkipsLeft << ' ' << p.nextBattleDummy << ' ' << p.pendingForgetAfterDummy << "\n";
+        << p.backpackCount << ' ' << p.grandmaSkipsLeft << ' ' << p.nextBattleDummy << ' ' << p.pendingForgetAfterDummy << ' '
+        << (int)p.difficulty << "\n";
     out << joinVec(p.learnedSkills) << "\n";
     out << joinVec(p.potions) << "\n";
     out << joinVec(p.relics) << "\n";
@@ -29,9 +30,11 @@ bool loadRun(const string& filename, RunState& rs, Player& p, GameMap& map) {
     if (!in) return false;
     getline(in, rs.mapId);
     if (!(in >> rs.valid >> rs.gameOver >> rs.curLayer >> rs.curIndex)) return false;
+    int difficultyInt = 1; // default to Normal
     if (!(in >> p.hp >> p.maxHp >> p.exp >> p.level >> p.skillPoints >> p.gold
           >> p.maxEnergy >> p.skillSlots >> p.potionSlots >> p.phoenixUsed
-          >> p.backpackCount >> p.grandmaSkipsLeft >> p.nextBattleDummy >> p.pendingForgetAfterDummy)) return false;
+          >> p.backpackCount >> p.grandmaSkipsLeft >> p.nextBattleDummy >> p.pendingForgetAfterDummy >> difficultyInt)) return false;
+    p.difficulty = (Difficulty)difficultyInt;
     string dummy;
     getline(in, dummy);
     string line;

@@ -32,7 +32,7 @@ struct MonsterState {
 };
 
 MonsterTemplate makeMonsterTemplate(MonsterKind kind);
-MonsterState makeMonsterState(const MonsterTemplate& mt);
+MonsterState makeMonsterState(const MonsterTemplate& mt, Difficulty d);
 MonsterState generateMonster(int layer, bool elite, bool boss, const Player& p);
 ActionType chooseMonsterAction(const MonsterState& m);
 string actionIntentText(const MonsterState& m, ActionType a);

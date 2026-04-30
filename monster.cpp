@@ -25,29 +25,31 @@ MonsterTemplate makeMonsterTemplate(MonsterKind kind) {
     return makeMonsterTemplate(MonsterKind::Slime);
 }
 
-MonsterState makeMonsterState(const MonsterTemplate& mt) {
-    //takes in a monster template and returns a monster state with the same base and initialized hp, attack and block value.
+MonsterState makeMonsterState(const MonsterTemplate& mt, Difficulty d) {
+    //takes in a monster template and difficulty, returns a monster state with the same base and initialized hp, attack and block value.
+    //applies difficulty multiplier to hp and attack
+    double multiplier = getDifficultyMultiplier(d);
     MonsterState ms;
     ms.base = mt;
-    ms.hp = mt.maxHp;
-    ms.attack = mt.attack;
-    ms.blockValue = mt.blockValue;
+    ms.hp = (int)(mt.maxHp * multiplier);
+    ms.attack = (int)(mt.attack * multiplier);
+    ms.blockValue = (int)(mt.blockValue * multiplier);
     return ms;
 }
 
 MonsterState generateMonster(int layer, bool elite, bool boss, const Player& p) {
     //generates a monster state based on the layer number, whether it's an elite battle and whether it's a boss battle.
-    if (p.nextBattleDummy) return makeMonsterState(makeMonsterTemplate(MonsterKind::Dummy));
-    if (boss) return makeMonsterState(makeMonsterTemplate(MonsterKind::AbyssBoss));
+    if (p.nextBattleDummy) return makeMonsterState(makeMonsterTemplate(MonsterKind::Dummy), p.difficulty);
+    if (boss) return makeMonsterState(makeMonsterTemplate(MonsterKind::AbyssBoss), p.difficulty);
     if (elite) {
         std::vector<MonsterKind> pool = {MonsterKind::Golem, MonsterKind::BanditCaptain, MonsterKind::IronBeast};
-        return makeMonsterState(makeMonsterTemplate(pool[randint(0, (int)pool.size() - 1)]));
+        return makeMonsterState(makeMonsterTemplate(pool[randint(0, (int)pool.size() - 1)]), p.difficulty);
     }
     vector<MonsterKind> pool;
     if (layer <= 2) pool = {MonsterKind::Slime, MonsterKind::Witch};
     else if (layer <= 5) pool = {MonsterKind::Slime, MonsterKind::Witch, MonsterKind::BanditCaptain};
     else pool = {MonsterKind::Witch, MonsterKind::Slime, MonsterKind::IronBeast};
-    return makeMonsterState(makeMonsterTemplate(pool[randint(0, (int)pool.size() - 1)]));
+    return makeMonsterState(makeMonsterTemplate(pool[randint(0, (int)pool.size() - 1)]), p.difficulty);
 }
 
 ActionType chooseMonsterAction(const MonsterState& m) {

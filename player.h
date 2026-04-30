@@ -23,6 +23,7 @@ struct Player {
     int grandmaSkipsLeft = 0;
     bool nextBattleDummy = false;
     bool pendingForgetAfterDummy = false;
+    Difficulty difficulty = Difficulty::Normal; //difficulty setting for the run
 };
 
 struct RunState {
