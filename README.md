@@ -5,7 +5,9 @@
  ### Authors
  Feng Ziyue, Tang Mengze, Xiong Mingyu
  ### Libraries
+ ```text
  <iostream>,<vector>,<string>,<random>,<algorithm>,<limits>,<fstream>,<sstream>,<cstdlib>,<cmath>
+```
  ### Execution Instuctions
  Just run the code and type "1" to start a new game.
 
