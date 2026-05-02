@@ -21,10 +21,10 @@ enter
 to play the game.
 
 ### Introduction
-This game is written in C++ with map generation, combat, player progression, and save/load support. The project is organized as a modular console application in which the player advances through a branching map, enters battles and special rooms, collects resources, and attempts to defeat a final boss.
+This game called Slay the Dungeon. It is written in C++ with map generation, combat, player progression, and save/load support. The project is organized as a modular console application in which the player advances through a branching map, enters battles and special rooms, collects resources, and attempts to defeat a final boss.
 
 ### Overview
-* This project implements an experience in command-line environment. Its core gameplay loop combines exploration, combat, rogue-like progression, and persistence, with the main program coordinating player creation, map traversal, room handling, victory conditions, defeat handling, and run continuation.
+* Slay the Dungeon implements an experience in command-line environment. Its core gameplay loop combines exploration, combat, rogue-like progression, and persistence, with the main program coordinating player creation, map traversal, room handling, victory conditions, defeat handling, and run continuation.
 * The game uses a node-based map made of multiple layers and branching routes. As the player moves forward, each node may represent a monster fight, shop, campfire, chest and random ones, creating a structured but replayable run each time a new map is generated.
 
 ### Main Features
