@@ -8,7 +8,15 @@
  <iostream>,<vector>,<string>,<random>,<algorithm>,<limits>,<fstream>,<sstream>,<cstdlib>,<cmath>
 ```
  ### Execution Instuctions
- Just run the code and type "1" to start a new game.
+ Download files in Linux environment.
+ enter
+ ```make main_final
+```
+to compile
+enter
+```./main_final
+```
+to play the game.
 
 ### Introduction
 This game is written in C++ with map generation, combat, player progression, and save/load support. The project is organized as a modular console application in which the player advances through a branching map, enters battles and special rooms, collects resources, and attempts to defeat a final boss.
