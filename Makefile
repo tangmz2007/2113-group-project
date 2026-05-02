@@ -22,8 +22,11 @@ player.o: player.cpp player.h skills.h items.h
 main_final.o: main_final.cpp battle.h map.h player.h savesystem.h items.h types.h
 	g++ -c main_final.cpp
 
+showdata.o: showdata.cpp showdata.h
+	g++ -c showdata.cpp
+
 types.o: types.cpp types.h
 	g++ -c types.cpp	
 
-main_final: main_final.o battle.o map.o monster.o skills.o savesystem.o player.o items.o types.o
-	g++ main_final.o battle.o map.o monster.o skills.o savesystem.o player.o items.o types.o -o main_final
+main_final: main_final.o battle.o map.o monster.o skills.o savesystem.o player.o items.o types.o showdata.o
+	g++ main_final.o battle.o map.o monster.o skills.o savesystem.o player.o items.o types.o showdata.o -o main_final
