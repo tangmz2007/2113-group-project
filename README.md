@@ -10,11 +10,13 @@
  ### Execution Instuctions
  Download files in Linux environment.
  enter
- ```make main_final
+ ```text
+make main_final
 ```
 to compile
 enter
-```./main_final
+```text
+./main_final
 ```
 to play the game.
 
