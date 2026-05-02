@@ -1,7 +1,7 @@
 #include "player.h"
 #include "skills.h"
 #include "items.h"
-#include "showData.h" // showdata integrated: render player info in a centered window
+#include "showdata.h" // showdata integrated: render player info in a centered window
 #include <iostream>
 #include <algorithm>
 #include <sstream>
