@@ -7,6 +7,7 @@
 #include <iostream>
 #include <algorithm>
 #include <random>
+#include "showdata.h"
 #include <ctime>
 
 using namespace std;

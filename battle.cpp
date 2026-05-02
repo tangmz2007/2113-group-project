@@ -1,8 +1,10 @@
 #include "battle.h"
 #include "items.h"
+#include "showdata.h"
 #include <iostream>
 #include <algorithm>
 #include <cmath>
+#include <sstream>
 using namespace std;
 
 int playerDamageAfterMods(const Player& p, const BattleContext& bc, int base) {
@@ -151,25 +153,35 @@ bool grantSpinsterEnergy(const Player& p, BattleContext& bc) {
     }
     return false;
 }
+static const char* ANSI_RED = "\033[31m";
+static const char* ANSI_BLUE = "\033[34m";
+static const char* ANSI_ORANGE = "\033[38;5;208m"; // orange on ANSI-capable terminals
+static const char* ANSI_RESET = "\033[0m";
 
 void showBattleHUD(const Player& p, const BattleContext& bc, const MonsterState& m) {
     //displays the battle HUD, showing player HP, block and energy, monster HP, block and statuses, and player statuses if any. 
     // also shows the monster's announced action and intent
     //inputs are player, battle context and monster state, output is the displayed battle HUD
-    cout << "\nYour HP " << p.hp << "/" << p.maxHp << "  Block " << bc.playerBlock
-              << "  Energy " << bc.energy << "\n";
-    cout << m.base.name << " HP " << max(0, m.hp) << "/" << m.base.maxHp << "  Block " << m.block;
-    if (bc.vulnerableOnEnemy > 0) cout << "  Vulnerable(" << bc.vulnerableOnEnemy << ")";
-    if (bc.poisonOnEnemy > 0) cout << "  Poison(" << bc.poisonOnEnemy << ")";
-    cout << "\n";
+    stringstream ss;
+    ss << "Your HP " << ANSI_RED << p.hp << "/" << p.maxHp << ANSI_RESET
+       << "  Block " << ANSI_BLUE << bc.playerBlock << ANSI_RESET
+       << "  Energy " << ANSI_ORANGE << bc.energy << ANSI_RESET << "\n";
+    ss << m.base.name << " HP " << ANSI_RED << max(0, m.hp) << "/" << m.base.maxHp << ANSI_RESET
+       << "  Block " << ANSI_BLUE << m.block << ANSI_RESET;
+    if (bc.vulnerableOnEnemy > 0) ss << "  Vulnerable(" << bc.vulnerableOnEnemy << ")";
+    if (bc.poisonOnEnemy > 0) ss << "  Poison(" << bc.poisonOnEnemy << ")";
+    ss << "\n";
     if (bc.poisonOnPlayer > 0 || bc.weakOnPlayer > 0 || bc.trapped || bc.damageCapOne) {
-        cout << "Player statuses:";
-        if (bc.poisonOnPlayer > 0) cout << " Poison(" << bc.poisonOnPlayer << ")";
-        if (bc.weakOnPlayer > 0) cout << " Weak(" << bc.weakOnPlayer << ")";
-        if (bc.trapped) cout << " Trapped";
-        if (bc.damageCapOne) cout << " Apparition";
-        cout << "\n";
+        ss << "Player statuses:";
+        if (bc.poisonOnPlayer > 0) ss << " Poison(" << bc.poisonOnPlayer << ")";
+        if (bc.weakOnPlayer > 0) ss << " Weak(" << bc.weakOnPlayer << ")";
+        if (bc.trapped) ss << " Trapped";
+        if (bc.damageCapOne) ss << " Apparition";
+        ss << "\n";
     }
+
+    // showdata: display battle hud inside a centered box
+    showdata::showCenteredBox(ss.str(), false);
 }
 
 bool playerTurn(Player& p, BattleContext& bc, MonsterState& m) {
