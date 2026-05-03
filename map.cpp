@@ -222,7 +222,6 @@ void GameMap::printMap(int curL, int curI) const {
         if (end != string::npos) cout << row.substr(0, end + 1) << "\n";
     }
     cout << "Legend: [@X]=Current [X*]=Visited [?]=Unknown\n";
-    cout << "Types: ST Start, M Monster, E Elite, S Shop, C Campfire, CH Chest, ? Event, BO Boss\n";
 }
 
 bool GameMap::save(std::ofstream& out) const {
