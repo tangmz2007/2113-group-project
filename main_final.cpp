@@ -120,8 +120,8 @@ void doShop(Player& p) {
 void doCampfire(Player& p) {
     //handles the campfire node. allows the player to rest, train or meditate.
     //input player, outputs the result of the campfire interaction
-    std::cout << "\n===== CAMPFIRE =====\n";
-    std::cout << "1 Rest (+30 HP)\n2 Train (+35 EXP)\n3 Meditate (forget one skill, then learn one skill)\n";
+    cout << "\n===== CAMPFIRE =====\n";
+    cout << "1 Rest (+30 HP)\n2 Train (+35 EXP)\n3 Meditate (forget one skill, then learn one skill)\n";
     int c = readIntInRange(1, 3);
     if (c == 1) {
         int before = p.hp;
@@ -152,13 +152,13 @@ void doChest(Player& p) {
         }
         if (pool.empty()) {
             p.gold += 45;
-            cout << "The chest turns into 45 gold.\n";
+            cout << "You find 45 gold in the chest.\n";
             return;
         }
         int id = pool[randint(0, (int)pool.size() - 1)];
         applyRelicPickup(p, id);
     } else {
-        int goldGain = randint(35, 70);
+        int goldGain = randint(45, 80);
         p.gold += goldGain;
         cout << "You find " << goldGain << " gold.\n";
     }
@@ -174,8 +174,8 @@ void doEvent(Player& p) {
         cout << "1 Lose 10 max HP, gain 2 skill points\n2 Leave\n";
         int c = readIntInRange(1, 2);
         if (c == 1) {
-            p.maxHp = std::max(30, p.maxHp - 10);
-            p.hp = std::min(p.hp, p.maxHp);
+            p.maxHp = max(30, p.maxHp - 10);
+            p.hp = min(p.hp, p.maxHp);
             p.skillPoints += 2;
             cout << "You gain 2 skill points.\n";
         }
@@ -190,7 +190,7 @@ void doEvent(Player& p) {
         p.gold += 40;
     } else {
         cout << "A cursed idol grants immediate strength.\n";
-        p.hp = std::min(p.maxHp, p.hp + 15);
+        p.hp = min(p.maxHp, p.hp + 15);
         p.gold += 20;
         cout << "Heal 15 HP and gain 20 gold.\n";
     }
